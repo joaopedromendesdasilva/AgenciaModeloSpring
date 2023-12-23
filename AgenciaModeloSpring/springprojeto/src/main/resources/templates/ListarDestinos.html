@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listagem de Destinos</title>
+</head>
+<body>
+    <h1>Listagem de Destinos</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Cidade</th>
+                <th>País</th>
+                <th>Data de Partida</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="destino : ${destinos}">
+                <td th:text="${destino.id}"></td>
+                <td th:text="${destino.nome}"></td>
+                <td th:text="${destino.cidade}"></td>
+                <td th:text="${destino.pais}"></td>
+                <td th:text="${#dates.format(destino.dataPartida, 'dd/MM/yyyy')}"></td>
+                <td>
+                    <a th:href="@{/destinos/editar/{id}(id=${destino.id})}">Editar</a>
+                    |
+                    <a th:href="@{/destinos/deletar/{id}(id=${destino.id})}">Deletar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/destinos/form}">Adicionar Destino</a>
+</body>
+</html>
